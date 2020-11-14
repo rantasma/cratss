@@ -9,7 +9,7 @@
     transition: all 50ms;
     outline: none;
     cursor: pointer;
-
+    
     &,&:active,&:focus{
         outline: none;
     }
@@ -18,6 +18,8 @@
         cursor: default;
         opacity: 0.3;
     }
+
+    @include mixin.borderRadius("sm");
 
     // reglas para botones tematicos
     $colorGroup:"themeColor" "stateColor";
