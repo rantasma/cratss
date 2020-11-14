@@ -9,7 +9,7 @@
 };
 
 @mixin fill-soft($type,$section:"themeColor",$theme:'default'){
-    background-color:rgba(core.get($theme,$section,$type),0.1);
+    background-color:rgba(core.get($theme,$section,$type),0.2);
     color: core.get($theme,$section,$type);
     border-color:rgba(core.get($theme,$section,$type),0.1);
 };
