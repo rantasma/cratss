@@ -36,3 +36,11 @@ $colorGroup:"themeColor" "stateColor";
        @include mixin.position($pos,$mod)
     }
 }
+
+$radiusSizes:"sm" "md" "lg";
+@each $size in $radiusSizes {
+    .border-radius-#{size}{
+        @include mixin.borderRadius($size);
+    }
+}
+
