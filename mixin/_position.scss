@@ -1,7 +1,45 @@
+@mixin position-top($modificator:"left",$transforms){
+    bottom:100%;
+    @include verticalPos($modificator,$transforms );
+    @content;
+}
+
+@mixin position-bottom($modificator:"left",$transforms){
+    top:100%;
+    @include verticalPos($modificator,$transforms );
+    @content;
+}
+@mixin position-left($modificator:"left",$transforms){
+    right:100%;
+    @include verticalPos($modificator,$transforms );
+    @content;
+}
+
+@mixin position-right($modificator:"left",$transforms){
+    left:100%;
+    @include verticalPos($modificator,$transforms );
+    @content;
+}
 
 
-@mixin position($position){
-    @each $pos, $offset in $position {
-        #{$pos}:0+$offset
+@mixin verticalPos($modificator,$transforms){
+    @if $modificator=="left"{
+        right:100%;
+    }@else if $modificator=="right"{
+        left:100%;
+    }@else if $modificator=="center"{
+        left:50%;
+        @include prefix("transform", "translateX(-50%)"+$transforms);
+    }
+}
+
+@mixin horizontalPos($modificator,$transforms){
+    @if $modificator=="top"{
+        bottom:100%;
+    }@else if $modificator=="botton"{
+        top:100%;
+    }@else if $modificator=="center"{
+        top:50%;
+        @include prefix("transform", "translateY(-50%)"+$transforms);
     }
 }
