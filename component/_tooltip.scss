@@ -110,7 +110,7 @@ $default-color:rgb(214, 214, 214);
     &-right{
         margin-left: -50vw;
         max-width: 50vw;
-        @include mixin.position("right","center","translateX(101%)");
+        @include mixin.position("right","center","translateX(50vw)");
         &:after{
             content: "";
             @include mixin.triangle("left");
