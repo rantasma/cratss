@@ -31,27 +31,8 @@ $colorGroup:"themeColor" "stateColor";
     }
 };
 
-
-$verticalPos:("top", "botton","center");
-$horizontalPos:("right", "left","center");
-@each $pos in $verticalPos {
-    .position-left-#{$pos}{
-        position: absolute;
-        @include mixin.position-left($pos)
-    }
-    .position-right-#{$pos}{
-        position: absolute;
-        @include mixin.position-left($pos)
+@include mixin.positionClasses() using ($pos, $mod){
+    .position-#{$pos}-#{$mod}{
+       @include mixin.position($pos,$mod)
     }
 }
-@each $pos in $horizontalPos {
-    .position-top-#{$pos}{
-        position: absolute;
-        @include mixin.position-top($pos)
-    }
-    .position-right-#{$pos}{
-        position: absolute;
-        @include mixin.position-bottom($pos)
-    }
-}
-
