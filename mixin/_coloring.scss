@@ -5,13 +5,13 @@
 @mixin fill($type,$section:"themeColor",$theme:'default'){
     background-color:core.get($theme,$section,$type);
     color: core.get($theme,"on-"+$section,$type) or black;
-    // border-color:transparent;
+    border-color:core.get($theme,$section,$type);
 };
 
 @mixin fill-soft($type,$section:"themeColor",$theme:'default'){
     background-color:rgba(core.get($theme,$section,$type),0.1);
     color: core.get($theme,$section,$type);
-    // border-color:transparent;
+    border-color:rgba(core.get($theme,$section,$type),0.1);
 };
 
 @mixin outline($type,$section:"themecolor",$theme:'default',$width:"thik"){

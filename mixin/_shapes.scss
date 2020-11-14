@@ -6,17 +6,21 @@
     background-color: transparent;
     border-style: solid;
     border-color: transparent ;
-    border-top-width: 2em;
+    border-top-width: 1em;
     border-right-width: 1em;
     border-left-width: 1em;
     border-bottom-width:1em;
     @if $direction == "up"{
+        border-top-width: 2em;
         border-bottom-color: $color ;
     }@else if $direction == "down"{
+        border-bottom-width: 2em;
         border-top-color: $color ;
     }@else if $direction == "right"{
+        border-right-width: 2em;
         border-left-color: $color ;
     }@else if $direction == "left"{
+        border-left-width: 2em;
         border-right-color: $color ;
     }
 }
