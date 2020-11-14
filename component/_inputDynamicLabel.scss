@@ -1,0 +1,58 @@
+@use "../core";
+@use "../mixin";
+
+
+.input-dynamic-label{
+    position: relative;
+
+    input{
+        @include mixin.forAllThemes using ($theme){
+            background-color: core.get($theme,"surfaceColor");
+        }
+    }
+    
+    label{
+        position: absolute;
+        transition: all 0.2s;
+        pointer-events:none;
+    }
+
+    input:placeholder-shown{
+        & ~ label{
+            bottom: 50%;
+            left:1rem;
+            @include mixin.prefix("transform","translateY(50%)");
+        }
+    }
+
+
+    &-top{
+        margin-top:1.7rem;
+        input:focus, input:not(:placeholder-shown){
+            &~label{
+                bottom:100%;
+                left:0.1rem;
+                background: unset;
+                font-size: unset;
+                @include mixin.prefix("transform", "translateY(-10%)");
+            }
+        }
+    }
+    
+    @include mixin.forAllThemes using ($theme){
+        &-middle{
+            margin-top:1rem;
+            input:focus, input:not(:placeholder-shown){
+                &~label{
+                    bottom:100%;
+                    left:0.1rem;
+                    background: core.get($theme,"surfaceColor");
+                    padding: 0 3px;
+                    font-size: 0.8rem;
+                    @include mixin.prefix("transform","translateY(50%)");
+                }
+            }
+            
+        }
+    }
+}
