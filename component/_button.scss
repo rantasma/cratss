@@ -1,0 +1,51 @@
+@use "../core";
+@use "../mixin";
+
+.btn{
+
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin:1rem;
+    transition: all 50ms;
+    outline: none;
+    cursor: pointer;
+
+    &,&:active,&:focus{
+        outline: none;
+    }
+
+    &:disabled{
+        cursor: default;
+        opacity: 0.3;
+    }
+
+    // reglas para botones tematicos
+    $colorGroup:"themeColor" "stateColor";
+    @each $section in $colorGroup {
+        @include mixin.forAllThemeTypes($section) using ($theme,$type){
+
+            &[colorMode="filled"][color=#{$type}]{
+                border:none;
+                &:active:not(:disabled){
+                    @include mixin.fill($type,$section+"Dark",$theme);        
+                }
+            }
+        
+            &[colorMode="filled-soft"][color=#{$type}]{
+                border:none;
+                &:active:not(:disabled){
+                    @include mixin.fill($type,$section,$theme);        
+                }
+            }
+            
+            &[colorMode="outline"][color=#{$type}]{
+                &:active:not(:disabled){
+                    @include mixin.fill($type,$section,$theme);        
+                }
+            }
+        }
+    };
+
+
+
+}
