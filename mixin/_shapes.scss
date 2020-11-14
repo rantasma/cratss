@@ -1,6 +1,10 @@
 
 
-@mixin triagle($color,$direction){
+@mixin triangle($direction:"up",$color:""){
+    @if color ==""{
+        $color:inherit;
+    }
+
     background-color: transparent;
     border-style: solid;
     border-color: transparent ;

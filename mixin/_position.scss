@@ -1,3 +1,36 @@
+
+
+@mixin positionClasses(){
+    $verticalPos:("top", "botton","center");
+    @each $pos in $verticalPos {
+        @content($pos:"left",$mod:$pos);
+        @content($pos:"right",$mod:$pos);
+    }
+    $horizontalPos:("right", "left","center");
+    @each $pos in $horizontalPos {
+        @content($pos:"top",$mod:$pos);
+        @content($pos:"bottom",$mod:$pos);
+    }
+}
+
+@mixin position($pos,$mod,$trans:''){
+    @if $pos=="top"{
+        @include position-top($mod,$trans)
+    }
+
+    @if $pos=="bottom"{
+        @include position-bottom($mod,$trans)
+    }
+    @if $pos=="left"{
+        @include position-left($mod,$trans)
+    }
+    @if $pos=="right"{
+        @include position-right($mod,$trans)
+    }
+    
+}
+
+
 @mixin position-top($modificator:"left",$transforms:""){
     bottom:100%;
     @include verticalPos($modificator,$transforms );
