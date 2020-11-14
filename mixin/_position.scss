@@ -27,29 +27,33 @@
     @if $pos=="right"{
         @include position-right($mod,$trans)
     }
-    
+    @content;
 }
 
 
 @mixin position-top($modificator:"left",$transforms:""){
     bottom:100%;
+    top:unset;
     @include verticalPos($modificator,$transforms );
     @content;
 }
 
 @mixin position-bottom($modificator:"left",$transforms:""){
     top:100%;
+    bottom: unset;
     @include verticalPos($modificator,$transforms );
     @content;
 }
 @mixin position-left($modificator:"left",$transforms:""){
     right:100%;
+    left: unset;
     @include verticalPos($modificator,$transforms );
     @content;
 }
 
 @mixin position-right($modificator:"left",$transforms:""){
     left:100%;
+    right: unset;
     @include verticalPos($modificator,$transforms );
     @content;
 }
@@ -58,21 +62,31 @@
 @mixin verticalPos($modificator,$transforms:""){
     @if $modificator=="left"{
         right:100%;
+        left: unset;
+        @include prefix("transform",$transforms);
     }@else if $modificator=="right"{
         left:100%;
+        right: unset;
+        @include prefix("transform",$transforms);
     }@else if $modificator=="center"{
         left:50%;
-        @include prefix("transform", "translateX(-50%)"+$transforms);
+        right: unset;
+        @include prefix("transform", "translateX(-50%)"+#{$transforms});
     }
 }
 
 @mixin horizontalPos($modificator,$transforms:""){
     @if $modificator=="top"{
         bottom:100%;
+        top:unset;
+        @include prefix("transform",$transforms);
     }@else if $modificator=="botton"{
         top:100%;
+        bottom: unset;
+        @include prefix("transform",$transforms);
     }@else if $modificator=="center"{
         top:50%;
+        bottom: unset;
         @include mixin.prefix("transform", "translateY(-50%)"+$transforms);
     }
 }

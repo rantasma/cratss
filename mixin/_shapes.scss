@@ -1,9 +1,7 @@
 
 
-@mixin triangle($direction:"up",$color:""){
-    @if color ==""{
-        $color:inherit;
-    }
+@mixin triangle($direction:"up",$color:inherit){
+    
 
     background-color: transparent;
     border-style: solid;
@@ -12,7 +10,6 @@
     border-right-width: 1em;
     border-left-width: 1em;
     border-bottom-width:1em;
-    border-top-color: $default-color;
     @if $direction == "up"{
         border-bottom-color: $color ;
     }@else if $direction == "down"{
