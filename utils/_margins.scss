@@ -1,0 +1,27 @@
+$directions:("r":right,"l":left,"t":top,"b":bottom);
+.m-auto{
+    margin:auto;
+}
+
+@for $i from 1 through 5 {
+    .m-#{$i}{
+        margin: #{$i}rem;
+    }
+    @each $key, $val in $directions {
+        .m#{$key}-#{$i}{
+            margin-#{$val}: #{$i}rem;
+        }
+    }
+  
+}
+@for $i from 1 through 5 {
+
+    .p-#{$i}{
+        padding:#{$i}rem;
+    }
+    @each $key, $val in $directions {
+        .p#{$key}-#{$i}{
+            padding-#{$val}: #{$i}rem;
+        }
+    }
+}

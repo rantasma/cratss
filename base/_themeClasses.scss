@@ -1,0 +1,34 @@
+@use "sass:map";
+@use "../core";
+@import "../mixin";
+
+
+//elevation
+@for $i from 0 through 5{
+    .elevation-#{$i}{
+        @include elevation($i);
+    }
+}
+
+// colors types
+$colorGroup:"themeColor" "stateColor";
+@each $section in $colorGroup {
+    @include forAllThemeTypes($section) using ($theme,$type){
+        [colorMode="text"][color=#{$type}],[color=#{$type}]{
+            @include text($type,$section,$theme);        
+        }
+
+        [colorMode="filled"][color=#{$type}]{
+            @include fill($type,$section,$theme);        
+        }
+    
+        [colorMode="filled-soft"][color=#{$type}]{
+            @include fill-soft($type,$section,$theme);        
+        }
+        
+        [colorMode="outline"][color=#{$type}]{
+            @include outline($type,$section,$theme);        
+        }
+    }
+};
+

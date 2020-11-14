@@ -1,0 +1,7 @@
+$aligns: top, middle, bottom;
+
+@each $align in $aligns{
+    .verta-#{$align}{
+        vertical-align: $align;
+    }
+}

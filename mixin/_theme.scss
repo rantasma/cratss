@@ -1,0 +1,38 @@
+@use '../functions/theming' as core;
+
+@mixin forAllThemes{
+    $themes:core.getThemes();
+    @each $theme in $themes {
+        @include themeNameSpace($theme){
+            @content($theme);
+        }
+    }
+};
+
+
+@mixin forAllThemeTypes($section){
+    @include forAllThemes using ($theme){
+        @include forAllTypes($theme,$section ) using ($type){
+            @content ($theme,$type)
+        }
+    }
+};
+
+@mixin forAllTypes($theme,$section){
+    $types: core.getTypes(core.getTheme($theme),$section);
+    @each $type in $types{
+        @content($type);
+    }
+};
+
+@mixin themeNameSpace($theme){
+    @if $theme == default {
+                   
+            @content;
+        
+    } @else if core.getTheme($theme){
+        .#{$theme} &{
+            @content;
+        }
+    }
+}

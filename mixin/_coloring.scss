@@ -1,0 +1,31 @@
+@use '../core';
+
+
+
+@mixin fill($type,$section:"themeColor",$theme:'default'){
+    background-color:core.get($theme,$section,$type);
+    color: core.get($theme,"on-"+$section,$type) or black;
+    border-color:transparent;
+};
+
+@mixin fill-soft($type,$section:"themeColor",$theme:'default'){
+    background-color:rgba(core.get($theme,$section,$type),0.1);
+    color: core.get($theme,$section,$type);
+    border-color:transparent;
+};
+
+@mixin outline($type,$section:"themecolor",$theme:'default',$width:"thik"){
+    background-color:core.get($theme,"surfaceColor");    
+    color:core.get($theme,"on-surfaceColor") or black;    
+    border-style: solid;
+    border-width: core.get($theme,"borderShape",$width) ;
+    border-color: core.get($theme,$section,$type);
+}
+
+@mixin text($type,$section:"themecolor",$theme:'default'){
+    color:core.get($theme,$section,$type);
+}
+
+@mixin surfaceClean($theme:'default',$type:"default"){
+    background-color: core.get($theme,"surfaceColor",$type);
+}

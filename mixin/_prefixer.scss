@@ -1,0 +1,8 @@
+$prefixes-by-browser:  -webkit-,-moz-, -o-, -ms-;
+
+@mixin prefix($prop,$val){
+    @each $prefix in $prefixes-by-browser{
+        #{$prefix}#{$prop}:#{$val};
+    }
+    #{$prop}:#{$val};
+}

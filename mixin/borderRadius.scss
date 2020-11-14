@@ -1,0 +1,29 @@
+@use '../core';
+
+
+
+@mixin borderRadius($size){
+    @if $size == "sm"{
+        @include border-radius-sm;
+    }@else if $size == "md"{
+        @include border-radius-md;
+    }@else if $size == "lg"{
+        @include border-radius-lg;
+    }
+}
+
+@mixin border-radius-sm{
+    @include core.forAllThemes using ($theme){
+        border-radius: core.get($theme,"radiusShape","small");
+    }
+}
+@mixin border-radius-md{
+    @include core.forAllThemes using ($theme){
+        border-radius: core.get($theme,"radiusShape","medium");
+    }
+}
+@mixin border-radius-lg{
+    @include core.forAllThemes using ($theme){
+        border-radius: core.get($theme,"radiusShape","big");
+    }
+}

@@ -1,0 +1,53 @@
+@use "sass:map";
+@use "sass:list";
+
+$ratThemes:();
+
+
+@mixin addTheme($name:"", $theme){
+    @if $name==""{
+        $name:"defaut";
+        $ratThemes:map.set($ratThemes,"default",$theme) !global;
+    }@else{
+        $ratThemes:map.set($ratThemes,$name,$theme) !global;
+    }
+    
+};
+@function getTheme($name:"default"){
+    
+    @return map.get($ratThemes,$name)
+};
+
+@function getThemes(){
+    $list:();
+
+    @each $key, $val in $ratThemes{
+        $list:list.append($list,$key);
+    };
+
+    @return $list;
+};
+
+
+//middlerware
+@function getTypes($theme:getTheme(),$sectionName){
+    $list:();
+    $section: map.get($theme,$sectionName);
+            
+    @each $key, $val in $section{
+        $list:list.append($list,$key);
+    };
+
+    @return $list;
+};
+
+@function get($themeName,$section,$type:"default"){
+    
+    @return map.get(
+        map.get(
+            map.get($ratThemes,$themeName),
+            $section
+        ),
+        $type
+    )
+}

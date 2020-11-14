@@ -1,0 +1,7 @@
+$aligns: left,right,center;
+
+@each $align in $aligns{
+    .horiza-#{$align}{
+        text-align: $align;
+    }
+}

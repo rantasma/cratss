@@ -1,0 +1,7 @@
+
+
+@mixin position($position){
+    @each $pos, $offset in $position {
+        #{$pos}:0+$offset
+    }
+}
