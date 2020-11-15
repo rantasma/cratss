@@ -29,3 +29,9 @@
 @mixin surfaceClean($theme:'default',$type:"default"){
     background-color: core.get($theme,"surfaceColor",$type);
 }
+
+@mixin noColorSetup(){
+    background-color: unset;
+    color:unset;
+    border: unset;
+}

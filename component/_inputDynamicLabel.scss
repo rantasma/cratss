@@ -45,10 +45,12 @@
             input:focus, input:not(:placeholder-shown){
                 &~label{
                     bottom:100%;
-                    left:0.1rem;
+                    left:0.2rem;
                     background: core.get($theme,"surfaceColor");
                     padding: 0 3px;
                     font-size: 0.8rem;
+                    line-height: 0;
+                    height: calc(#{core.get($theme,"borderShape","thik")} + 1px);
                     @include mixin.prefix("transform","translateY(50%)");
                 }
             }
