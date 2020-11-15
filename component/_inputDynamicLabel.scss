@@ -4,12 +4,12 @@
 
 .input-dynamic-label{
     position: relative;
-
-    input{
-        @include mixin.forAllThemes using ($theme){
-            background-color: core.get($theme,"surfaceColor");
-        }
+    display: inline-block;
+    
+    @include mixin.forAllThemes using ($theme){
+        background-color: core.get($theme,"surfaceColor");
     }
+    
     
     label{
         position: absolute;
