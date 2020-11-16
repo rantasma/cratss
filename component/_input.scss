@@ -1,0 +1,112 @@
+@use "../core";
+@use "../mixin";
+
+@mixin invalid($theme) {
+    &.invalid{
+        border-color: core.get($theme,"stateColor","danger");
+        &~label{
+            color:core.get($theme,"stateColor","danger")
+        }
+    }
+}
+
+.field{
+
+    padding:0.5rem 1rem;
+    
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    outline: none;
+    transition: all 0.1s ease-in-out;
+
+    &:invalid,&:focus,&:active{
+        box-shadow: none;
+    }
+    
+    // reglas para inputs tematicos
+    $colorGroup:"themeColor" "stateColor";
+    @each $section in $colorGroup {
+        @include mixin.forAllThemeTypes($section) using ($theme,$type){
+            &:not(:disabled):hover{
+                border-color: darken(core.get($theme,"otherColor","neutro"),40%);
+                &~label{
+                    color: darken(core.get($theme,"otherColor","neutro"),40%);
+                }
+            }
+
+            &[color=#{$type}]{
+                border-bottom-color: core.get($theme,$section,$type);
+            }
+
+            &[colorMode="filled"][color=#{$type}]{
+                background-color: transparent;
+                color:core.get($theme,"on-surfaceColor");
+                border-color: core.get($theme,"otherColor","neutro");
+                &:hover{
+                    border-color: darken(core.get($theme,"otherColor","neutro"),40%);
+                }
+                &:focus,&:not(:placeholder-shown){
+                    border-color: core.get($theme,$section,$type);
+                    &~label{
+                        color: core.get($theme,$section,$type);
+                    } 
+                }
+                &.invalid{
+                    @include invalid($theme);
+                }
+            }
+        
+            &[colorMode="filled-soft"][color=#{$type}]{
+                @include mixin.borderRadius("sm");
+                &:placeholder-shown{
+                    border-color: transparent;
+                }
+                &:focus,&:not(:placeholder-shown){
+                    border-color: core.get($theme,$section,$type);
+                    &~label{
+                        color: rgba(core.get($theme,$section,$type),0.8);
+                    } 
+                }
+                &.invalid{
+                    @include invalid($theme);
+                }
+            }
+            
+            &[colorMode="outline"][color=#{$type}]{
+                @include mixin.borderRadius("sm");
+                &.start-neutro:not(:hover):not(:focus):placeholder-shown{
+                    @include mixin.outline("neutro","otherColor",$theme)
+                }
+                &:focus,&:not(:placeholder-shown){
+                    border-color: core.get($theme,$section,$type);
+                    &~label{
+                        color: core.get($theme,$section,$type);
+                    } 
+                    .input-dynamic-label-middle &~label{
+                        background: core.get($theme,"surfaceColor");
+                        height: calc(#{core.get($theme,"borderShape","thik")} + 2px);
+                        line-height: 0;
+                    }
+                }
+                &.invalid{
+                    @include invalid($theme);
+                }
+
+                &:required~label:after{
+                    content:" *";
+                    display:inline-block
+                }
+            }
+
+        }
+    };
+    &:disabled{
+        opacity: 0.5;
+        &~label{
+            opacity: 0.5;
+        }
+        
+    }
+}
+
