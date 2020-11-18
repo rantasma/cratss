@@ -39,7 +39,7 @@ $colorGroup:"themeColor" "stateColor";
 
 $radiusSizes:"sm" "md" "lg";
 @each $size in $radiusSizes {
-    .border-radius-#{size}{
+    .border-radius-#{$size}{
         @include mixin.borderRadius($size);
     }
 }
