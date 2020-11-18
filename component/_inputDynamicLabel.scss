@@ -10,6 +10,18 @@
         background-color: core.get($theme,"surfaceColor");
     }
     
+
+    input{
+        &::placeholder{
+            opacity: 0;
+        }
+        &:focus{
+            &::placeholder{
+                color:gray;
+                opacity:1;
+            }
+        }
+    }
     
     label{
         position: absolute;
@@ -32,7 +44,6 @@
             @include mixin.prefix("transform","translateY(50%)");
         }
     }
-
 
     &-top{
         margin-top:1.7rem;
