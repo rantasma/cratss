@@ -1,0 +1,42 @@
+@mixin cols($prefix:"-"){
+    @for $i from 1 through 12{
+        &-col#{$prefix}#{$i}{
+            grid-column-end: span $i ;
+        }
+    }
+}
+
+.grid{
+
+    &-container{
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        column-gap: 1.5rem;
+        row-gap: 1rem;
+
+        &-nogap{
+            gap: 0;
+        }
+    }
+    @include cols;
+
+    @media only screen and (max-width:576px) {
+        @include cols("-xs-");
+    }
+    @media only screen and (min-width:576px) {
+        @include cols("-sm-");
+    }
+    @media only screen and (min-width:768px) {
+        @include cols("-md-");
+    }
+    @media only screen and (min-width:992px) {
+        @include cols("-lg-");
+    }
+    @media only screen and (min-width:1200px) {
+        @include cols("-xl-");
+    }
+
+    
+}
+
+
