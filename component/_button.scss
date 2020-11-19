@@ -19,13 +19,28 @@
         opacity: 0.3;
     }
 
+   
+
     @include mixin.borderRadius("sm");
 
     // reglas para botones tematicos
     $colorGroup:"themeColor" "stateColor";
     @each $section in $colorGroup {
         @include mixin.forAllThemeTypes($section) using ($theme,$type){
-
+            &-pushable{
+                transition: all 0.05s;
+                @include mixin.prefix("transform","scale(1)");
+                &:not(:disabled):hover{
+                    @include mixin.elevation(2,core.get($theme,"otherColor","shadow"));
+                    @include mixin.prefix("transform","scale(1.05)");
+                }
+                
+                &:not(:disabled):active{
+                    @include mixin.elevation(1,core.get($theme,"otherColor","shadow"));
+                    @include mixin.prefix("transform","scale(0.99)");
+                }
+            }
+        
             &[colorMode="filled"][color=#{$type}]{
                 border:none;
                 &:active:not(:disabled){
